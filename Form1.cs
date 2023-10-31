@@ -14,6 +14,9 @@ namespace flashback_emulator
         // Fields
         private int borderSize = 2;
 
+        // Games collection
+        public Dictionary<string, Game> Games { get; private set; }
+
         // Constructor
         public Form1()
         {
@@ -22,6 +25,42 @@ namespace flashback_emulator
             ResourcePath = $"{BasePath}/res";
             this.Padding = new Padding(borderSize); // Border size
             this.BackColor = Color.FromArgb(36, 40, 47); // Border color
+            Games = new Dictionary<string, Game>();
+            GameLibrary.LoadGames();
+            Games = GameLibrary.GetGames();
+            int spaceX = 129 + 15;
+            int spaceY = 196 + 15;
+            int lastPosX = 6;
+            int lastPosY = 6;
+            int count = 0;
+
+            foreach (var game in Games.Values)
+            {
+                var img = Directory.GetFiles($"{ResourcePath}/img/", $"{game.Id}.png");
+                if (img.Length == 0)
+                {
+                    img = Directory.GetFiles($"{ResourcePath}/img/", "default.png");
+                }
+
+                var pic = new PictureBox
+                {
+                    Name = $"pictureBox{game.Id}",
+                    Size = new Size(129, 196),
+                    Location = new Point(lastPosX, lastPosY),
+                    Image = new Bitmap(img[0]),
+                    BackColor = Color.Black,
+                    SizeMode = PictureBoxSizeMode.Zoom
+                };
+                count++;
+                lastPosX += spaceX;
+                if (count > 5)
+                {
+                    lastPosY += spaceY;
+                    lastPosX = 6;
+                    count = 0;
+                }
+                panelDesktop.Controls.Add(pic);
+            }
         }
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
@@ -80,34 +119,42 @@ namespace flashback_emulator
 
                         if (clientPoint.Y <= resizeAreaSize)
                         {
-                            if (clientPoint.X <= resizeAreaSize) {
+                            if (clientPoint.X <= resizeAreaSize)
+                            {
                                 m.Result = (IntPtr)HTTOPLEFT;
                             }
-                            else if (clientPoint.X < (this.Size.Width - resizeAreaSize)) {
+                            else if (clientPoint.X < (this.Size.Width - resizeAreaSize))
+                            {
                                 m.Result = (IntPtr)HTTOP;
                             }
-                            else {
+                            else
+                            {
                                 m.Result = (IntPtr)HTTOPRIGHT;
                             }
                         }
                         else if (clientPoint.Y <= (this.Size.Height - resizeAreaSize))
                         {
-                            if (clientPoint.X <= resizeAreaSize) {
+                            if (clientPoint.X <= resizeAreaSize)
+                            {
                                 m.Result = (IntPtr)HTLEFT;
                             }
-                            else if (clientPoint.X > (this.Width - resizeAreaSize)) {
+                            else if (clientPoint.X > (this.Width - resizeAreaSize))
+                            {
                                 m.Result = (IntPtr)HTRIGHT;
                             }
                         }
                         else
                         {
-                            if (clientPoint.X <= resizeAreaSize) {
+                            if (clientPoint.X <= resizeAreaSize)
+                            {
                                 m.Result = (IntPtr)HTBOTTOMLEFT;
                             }
-                            else if (clientPoint.X < (this.Size.Width - resizeAreaSize)) {
+                            else if (clientPoint.X < (this.Size.Width - resizeAreaSize))
+                            {
                                 m.Result = (IntPtr)HTBOTTOM;
                             }
-                            else {
+                            else
+                            {
                                 m.Result = (IntPtr)HTBOTTOMRIGHT;
                             }
                         }
@@ -176,7 +223,8 @@ namespace flashback_emulator
 
         private void CollapseMenu()
         {
-            if (this.panelMenu.Width > 200) { // Collapse Menu
+            if (this.panelMenu.Width > 200)
+            { // Collapse Menu
                 btnMenuToggle.Text = "SHOW";
                 panelMenu.Width = 100;
                 pictureBoxPfp.Visible = false;
@@ -188,7 +236,8 @@ namespace flashback_emulator
                     btn.Padding = new Padding(0);
                 }
             }
-            else { // Expand menu 
+            else
+            { // Expand menu 
                 btnMenuToggle.Text = "HIDE";
                 panelMenu.Width = 230;
                 pictureBoxPfp.Visible = true;
@@ -197,7 +246,7 @@ namespace flashback_emulator
                 {
                     btn.Text = btn.Tag.ToString();
                     btn.ImageAlign = ContentAlignment.MiddleLeft;
-                    btn.Padding = new Padding(10,0,0,0);
+                    btn.Padding = new Padding(10, 0, 0, 0);
                 }
             }
         }
