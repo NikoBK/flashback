@@ -36,6 +36,7 @@
             btnMenuToggle = new Button();
             pictureBoxPfp = new PictureBox();
             panelTitleBar = new Panel();
+            labelCurrentPage = new Label();
             btnMinimize = new Button();
             btnMaximize = new Button();
             btnClose = new Button();
@@ -73,6 +74,7 @@
             btnExit.Tag = "EXIT";
             btnExit.Text = "EXIT";
             btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // btnDebug
             // 
@@ -140,6 +142,7 @@
             // panelTitleBar
             // 
             panelTitleBar.BackColor = Color.FromArgb(23, 29, 37);
+            panelTitleBar.Controls.Add(labelCurrentPage);
             panelTitleBar.Controls.Add(btnMinimize);
             panelTitleBar.Controls.Add(btnMaximize);
             panelTitleBar.Controls.Add(btnClose);
@@ -149,6 +152,17 @@
             panelTitleBar.Size = new Size(904, 60);
             panelTitleBar.TabIndex = 1;
             panelTitleBar.MouseDown += panelTitleBar_MouseDown;
+            // 
+            // labelCurrentPage
+            // 
+            labelCurrentPage.AutoSize = true;
+            labelCurrentPage.Font = new Font("Gadugi", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            labelCurrentPage.ForeColor = SystemColors.ButtonHighlight;
+            labelCurrentPage.Location = new Point(6, 12);
+            labelCurrentPage.Name = "labelCurrentPage";
+            labelCurrentPage.Size = new Size(100, 32);
+            labelCurrentPage.TabIndex = 5;
+            labelCurrentPage.Text = "Games";
             // 
             // btnMinimize
             // 
@@ -217,12 +231,13 @@
             Controls.Add(panelMenu);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "Flashback Emulator";
             Resize += Form1_Resize;
             panelMenu.ResumeLayout(false);
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBoxPfp).EndInit();
             panelTitleBar.ResumeLayout(false);
+            panelTitleBar.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -244,5 +259,6 @@
         private Button btnMinimize;
         private Button btnMaximize;
         private Button btnDebug;
+        private Label labelCurrentPage;
     }
 }

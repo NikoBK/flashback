@@ -8,8 +8,7 @@ namespace flashback_emulator
 
     public partial class Form1 : Form
     {
-        public string BasePath { get; private set; }
-        public string ResourcePath { get; private set; }
+        public string Path { get; private set; }
 
         // Fields
         private int borderSize = 2;
@@ -21,8 +20,7 @@ namespace flashback_emulator
         public Form1()
         {
             InitializeComponent();
-            BasePath = Path.Combine(Environment.CurrentDirectory);
-            ResourcePath = $"{BasePath}/res";
+            Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Flashback";
             this.Padding = new Padding(borderSize); // Border size
             this.BackColor = Color.FromArgb(36, 40, 47); // Border color
             Games = new Dictionary<string, Game>();
@@ -36,31 +34,43 @@ namespace flashback_emulator
 
             foreach (var game in Games.Values)
             {
-                var img = Directory.GetFiles($"{ResourcePath}/img/", $"{game.Id}.png");
+                var img = Directory.GetFiles($"{Path}/gamepack/res/images/", $"{game.Id}.png");
                 if (img.Length == 0)
                 {
-                    img = Directory.GetFiles($"{ResourcePath}/img/", "default.png");
+                    img = Directory.GetFiles($"{Path}/gamepack/res/", "default_game.png");
                 }
 
-                var pic = new PictureBox
+                var btn = new Button
                 {
-                    Name = $"pictureBox{game.Id}",
+                    Name = $"btn{game.Id}",
                     Size = new Size(129, 196),
                     Location = new Point(lastPosX, lastPosY),
-                    Image = new Bitmap(img[0]),
+                    BackgroundImage = new Bitmap(img[0]),
+                    BackgroundImageLayout = ImageLayout.Stretch,
                     BackColor = Color.Black,
-                    SizeMode = PictureBoxSizeMode.Zoom
+                    Text = game.Name,
+                    Font = new Font("Gadugi", 14f, FontStyle.Bold),
+                    ForeColor = Color.Silver,
+                    Tag = game.Id
                 };
+                btn.Click += new System.EventHandler(this.gameBtn_Click);
+
                 count++;
                 lastPosX += spaceX;
-                if (count > 5)
+                if (count > 11)
                 {
                     lastPosY += spaceY;
                     lastPosX = 6;
                     count = 0;
                 }
-                panelDesktop.Controls.Add(pic);
+                panelDesktop.Controls.Add(btn);
             }
+        }
+
+        private void gameBtn_Click(object sender, EventArgs e)
+        {
+            var button = ((Button)sender);
+            RunGame(button.Tag.ToString());
         }
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
@@ -69,19 +79,26 @@ namespace flashback_emulator
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
 
-        private void RunGame(string gameName)
+        private void RunGame(string gameID)
         {
-            string projector = $"{ResourcePath}\\flashplayer_projector.exe";
-            string game_path = $"{ResourcePath}/games/{gameName}.swf";
-            var pi = new ProcessStartInfo(game_path)
+            string projector = $"{Path}/res/flashplayer_projector.exe";
+            string game_path = $"{Path}/gamepack/res/games/{gameID}.swf";
+            if (File.Exists(game_path))
             {
-                Arguments = Path.GetFileName(game_path),
-                UseShellExecute = true,
-                WorkingDirectory = Path.GetDirectoryName(game_path),
-                FileName = projector,
-                Verb = "OPEN"
-            };
-            Process.Start(pi);
+                var pi = new ProcessStartInfo(game_path)
+                {
+                    Arguments = System.IO.Path.GetFileName(game_path),
+                    UseShellExecute = true,
+                    WorkingDirectory = System.IO.Path.GetDirectoryName(game_path),
+                    FileName = projector,
+                    Verb = "OPEN"
+                };
+                Process.Start(pi);
+            }
+            else
+            {
+                MessageBox.Show($"Unable to find the game files for {gameID}", "Game not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
@@ -249,6 +266,11 @@ namespace flashback_emulator
                     btn.Padding = new Padding(10, 0, 0, 0);
                 }
             }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

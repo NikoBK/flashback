@@ -15,12 +15,15 @@ public class Game
 public static class GameLibrary
 {
     public static Dictionary<string, Game> Games { get; private set; }
-    public const string Path = "res";
+    private static string Path;
 
     public static void LoadGames()
     {
         Games = new Dictionary<string, Game>();
-        string[] gamesXML = Directory.EnumerateFiles(Path, "games.xml", SearchOption.AllDirectories).ToArray();
+        string basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        Path = basePath + "/Flashback";
+
+        string[] gamesXML = Directory.EnumerateFiles($"{Path}/gamepack/dat/", "games.xml", SearchOption.AllDirectories).ToArray();
         XElement xml = XElement.Load(gamesXML[0]);
 
         // Parse every game xml.
@@ -32,8 +35,7 @@ public static class GameLibrary
                 LastPlayed = -1,
                 TimePlayed = 0
             };
-            game.ResourcePath = $"{Path}/{game.Id}";
-            // MessageBox.Show($"Loaded game: {game.Name}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information );
+            game.ResourcePath = $"{Path}/gamepack/res/games/{game.Id}";
             
             if (!Games.ContainsKey(game.Name)) { 
                 Games.Add(game.Name, game);
