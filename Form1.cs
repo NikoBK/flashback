@@ -81,7 +81,7 @@ namespace flashback_emulator
 
         private void RunGame(string gameID)
         {
-            string projector = $"{Path}/res/flashplayer_projector.exe";
+            string projector = $"{Path}/gamepack/res/flashplayer_projector.exe";
             string game_path = $"{Path}/gamepack/res/games/{gameID}.swf";
             if (File.Exists(game_path))
             {
