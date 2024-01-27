@@ -18,11 +18,12 @@ public class Userdata
 
 public static class DataManager
 {
-    private static string _cfgFile = "fbe_cfg.json";
+    private static string _saveFile = "flashback.json";
 
     public static Userdata LoadUserdata(string path)
     {
-        var file = $"{path}/{_cfgFile}";
+        // Ensure there is always a save file.
+        var file = $"{path}/{_saveFile}";
         if (!File.Exists(file)) {
             return CreateUserdata(path);
         }
@@ -46,7 +47,7 @@ public static class DataManager
 
     public static void SaveData(Userdata data, string path)
     {
-        var filePath = $"{path}/{_cfgFile}";
+        var filePath = $"{path}/{_saveFile}";
         var json = JsonConvert.SerializeObject(data, Formatting.Indented);
         File.WriteAllText(filePath, json);
     }

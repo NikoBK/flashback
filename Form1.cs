@@ -43,8 +43,9 @@ namespace flashback_emulator
                 var btn = new Button
                 {
                     Name = $"btn{game.Id}",
-                    Size = new Size(129, 196),
                     Location = new Point(lastPosX, lastPosY),
+                    Size = new Size(129, 196),
+                    Padding = new Padding(15, 10, 15, 10),
                     BackgroundImage = new Bitmap(img[0]),
                     BackgroundImageLayout = ImageLayout.Stretch,
                     BackColor = Color.Black,
