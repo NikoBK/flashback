@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿/*
+*  File: LibraryView.cs 
+*  Date: 12/02/2024
+*  Author: NikoBK
+*/
 namespace flashback_emulator.UserControls
 {
     public partial class LibraryView : UserControl
@@ -16,6 +11,9 @@ namespace flashback_emulator.UserControls
         {
             InitializeComponent();
             libUsernameButton.Text = appData.Username.ToUpper();
+
+            libLabelNoGames.Visible = appData.GameCount < 1;
+            libLabelNoGamesList.Visible = appData.GameCount < 1;
         }
     }
 }

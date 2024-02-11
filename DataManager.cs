@@ -9,6 +9,8 @@ public class AppData
 {
     public string Username { get; set; }
     public bool Registered { get; set; }
+    public DateTime UserCreationDate { get; set; }
+    public int GameCount { get; set; }
 }
 
 public static class DataManager
@@ -54,7 +56,9 @@ public static class DataManager
         // as appdata should only be created if it is needed.
         AppData data = new AppData {
             Username = "None",
-            Registered = false
+            Registered = false,
+            UserCreationDate = DateTime.Now,
+            GameCount = 0
         };
         SaveData(data, path);
         return data;
@@ -95,6 +99,7 @@ public static class DataManager
         AppData data = LoadAppData(GetAppDataPath());
         data.Username = username;
         data.Registered = true;
+        data.UserCreationDate = DateTime.Now;
         SaveData(data, GetAppDataPath());
     }
 
