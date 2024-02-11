@@ -7,9 +7,12 @@ namespace flashback_emulator
 {
     public partial class NewUserView : UserControl
     {
-        public NewUserView()
+        private NewLayoutForm _mainForm { get; set; }
+
+        public NewUserView(NewLayoutForm mainform)
         {
             InitializeComponent();
+            _mainForm = mainform;
             invalidUsernameLabel.Visible = false;
         }
 
@@ -37,6 +40,7 @@ namespace flashback_emulator
 
             // Save the username through the DataManager.
             DataManager.SaveUsername(introUsernameTextBox.Text);
+            _mainForm.OpenLibrary();
         }
     }
 }
