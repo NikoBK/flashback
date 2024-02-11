@@ -12,9 +12,10 @@ namespace flashback_emulator.UserControls
 {
     public partial class LibraryView : UserControl
     {
-        public LibraryView()
+        public LibraryView(AppData appData)
         {
             InitializeComponent();
+            libUsernameButton.Text = appData.Username.ToUpper();
         }
     }
 }

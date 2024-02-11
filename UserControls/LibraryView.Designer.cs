@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel2 = new Panel();
+            gamesArtPanel = new Panel();
             libLabelNoGames = new Label();
-            panel1 = new Panel();
-            button2 = new Button();
-            btnMenuToggle = new Button();
-            label1 = new Label();
-            label2 = new Label();
-            panel2.SuspendLayout();
-            panel1.SuspendLayout();
+            gamesListPanel = new Panel();
+            libLabelNoGamesList = new Label();
+            libUsernameButton = new Button();
+            libAddGameButton = new Button();
+            libLibraryLabel = new Label();
+            gamesArtPanel.SuspendLayout();
+            gamesListPanel.SuspendLayout();
             SuspendLayout();
             // 
-            // panel2
+            // gamesArtPanel
             // 
-            panel2.BackColor = Color.FromArgb(39, 35, 43);
-            panel2.Controls.Add(libLabelNoGames);
-            panel2.Location = new Point(212, 119);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1206, 615);
-            panel2.TabIndex = 11;
+            gamesArtPanel.BackColor = Color.FromArgb(39, 35, 43);
+            gamesArtPanel.Controls.Add(libLabelNoGames);
+            gamesArtPanel.Location = new Point(212, 119);
+            gamesArtPanel.Name = "gamesArtPanel";
+            gamesArtPanel.Size = new Size(1206, 615);
+            gamesArtPanel.TabIndex = 11;
             // 
             // libLabelNoGames
             // 
@@ -59,91 +59,91 @@
             libLabelNoGames.TabIndex = 0;
             libLabelNoGames.Text = "You have no games in your library";
             // 
-            // panel1
+            // gamesListPanel
             // 
-            panel1.BackColor = Color.FromArgb(36, 40, 47);
-            panel1.Controls.Add(label1);
-            panel1.Location = new Point(6, 119);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(200, 615);
-            panel1.TabIndex = 10;
+            gamesListPanel.BackColor = Color.FromArgb(36, 40, 47);
+            gamesListPanel.Controls.Add(libLabelNoGamesList);
+            gamesListPanel.Location = new Point(6, 119);
+            gamesListPanel.Name = "gamesListPanel";
+            gamesListPanel.Size = new Size(200, 615);
+            gamesListPanel.TabIndex = 10;
             // 
-            // button2
+            // libLabelNoGamesList
             // 
-            button2.FlatAppearance.BorderSize = 0;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button2.ForeColor = SystemColors.ButtonHighlight;
-            button2.Location = new Point(341, 38);
-            button2.Name = "button2";
-            button2.Size = new Size(127, 60);
-            button2.TabIndex = 14;
-            button2.Text = "USERNAME";
-            button2.UseVisualStyleBackColor = true;
+            libLabelNoGamesList.AutoSize = true;
+            libLabelNoGamesList.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            libLabelNoGamesList.ForeColor = Color.White;
+            libLabelNoGamesList.Location = new Point(49, 15);
+            libLabelNoGamesList.Name = "libLabelNoGamesList";
+            libLabelNoGamesList.Size = new Size(106, 15);
+            libLabelNoGamesList.TabIndex = 0;
+            libLabelNoGamesList.Text = "No games to show";
             // 
-            // btnMenuToggle
+            // libUsernameButton
             // 
-            btnMenuToggle.FlatAppearance.BorderSize = 0;
-            btnMenuToggle.FlatStyle = FlatStyle.Flat;
-            btnMenuToggle.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnMenuToggle.ForeColor = SystemColors.ButtonHighlight;
-            btnMenuToggle.Location = new Point(18, 38);
-            btnMenuToggle.Name = "btnMenuToggle";
-            btnMenuToggle.Size = new Size(127, 60);
-            btnMenuToggle.TabIndex = 12;
-            btnMenuToggle.Text = "ADD GAME";
-            btnMenuToggle.UseVisualStyleBackColor = true;
+            libUsernameButton.FlatAppearance.BorderSize = 0;
+            libUsernameButton.FlatStyle = FlatStyle.Flat;
+            libUsernameButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            libUsernameButton.ForeColor = SystemColors.ButtonHighlight;
+            libUsernameButton.Location = new Point(341, 38);
+            libUsernameButton.Name = "libUsernameButton";
+            libUsernameButton.Size = new Size(127, 60);
+            libUsernameButton.TabIndex = 14;
+            libUsernameButton.Text = "USERNAME";
+            libUsernameButton.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // libAddGameButton
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(49, 15);
-            label1.Name = "label1";
-            label1.Size = new Size(106, 15);
-            label1.TabIndex = 0;
-            label1.Text = "No games to show";
+            libAddGameButton.FlatAppearance.BorderSize = 0;
+            libAddGameButton.FlatStyle = FlatStyle.Flat;
+            libAddGameButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            libAddGameButton.ForeColor = SystemColors.ButtonHighlight;
+            libAddGameButton.Location = new Point(18, 38);
+            libAddGameButton.Name = "libAddGameButton";
+            libAddGameButton.Size = new Size(127, 60);
+            libAddGameButton.TabIndex = 12;
+            libAddGameButton.Text = "ADD GAME";
+            libAddGameButton.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // libLibraryLabel
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(202, 58);
-            label2.Name = "label2";
-            label2.Size = new Size(74, 21);
-            label2.TabIndex = 15;
-            label2.Text = "LIBRARY";
+            libLibraryLabel.AutoSize = true;
+            libLibraryLabel.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            libLibraryLabel.ForeColor = Color.White;
+            libLibraryLabel.Location = new Point(202, 58);
+            libLibraryLabel.Name = "libLibraryLabel";
+            libLibraryLabel.Size = new Size(74, 21);
+            libLibraryLabel.TabIndex = 15;
+            libLibraryLabel.Text = "LIBRARY";
             // 
             // LibraryView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(23, 29, 37);
-            Controls.Add(label2);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Controls.Add(button2);
-            Controls.Add(btnMenuToggle);
+            Controls.Add(libLibraryLabel);
+            Controls.Add(gamesArtPanel);
+            Controls.Add(gamesListPanel);
+            Controls.Add(libUsernameButton);
+            Controls.Add(libAddGameButton);
             Name = "LibraryView";
             Size = new Size(1425, 773);
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            gamesArtPanel.ResumeLayout(false);
+            gamesArtPanel.PerformLayout();
+            gamesListPanel.ResumeLayout(false);
+            gamesListPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Panel panel2;
+        private Panel gamesArtPanel;
         private Label libLabelNoGames;
-        private Panel panel1;
-        private Label label1;
-        private Button button2;
-        private Button btnMenuToggle;
-        private Label label2;
+        private Panel gamesListPanel;
+        private Label libLabelNoGamesList;
+        private Button libUsernameButton;
+        private Button libAddGameButton;
+        private Label libLibraryLabel;
     }
 }
