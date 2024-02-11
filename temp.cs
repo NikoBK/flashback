@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace flashback_emulator
 {
-    public partial class NewLayoutForm : Form
+    public partial class temp : Form
     {
-        // TODO: This should be based on some save data that fetches
-        // games from some directory of files.
-        public int GamesCount { get; private set; } = 0;
-
-        public NewLayoutForm()
+        public temp()
         {
             InitializeComponent();
-
-            screenViewPanel.Controls.Add(new NewUserView());
         }
     }
 }
