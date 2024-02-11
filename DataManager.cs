@@ -3,6 +3,7 @@
 public class AppData
 {
     public string Username { get; set; }
+    public bool Registered { get; set; }
 }
 
 public static class DataManager
@@ -47,7 +48,8 @@ public static class DataManager
         // Sample appdata, this should be overwritten almost instantly
         // as appdata should only be created if it is needed.
         AppData data = new AppData {
-            Username = "None"
+            Username = "None",
+            Registered = false
         };
         SaveData(data, path);
         return data;
@@ -78,6 +80,8 @@ public static class DataManager
 
     /// <summary>
     /// Save the username to the appdata, can be called from anywhere in the project.
+    /// This function call will tag the user in the appdata as registered, meaning the
+    /// introductory view will not be triggered anytime Flashback loads this specific appdata.
     /// </summary>
     /// <param name="username"></param>
     public static void SaveUsername(string username)
@@ -88,6 +92,7 @@ public static class DataManager
         // Find the Flashback folder and store the appdata file in there.
         AppData data = LoadAppData(path);
         data.Username = username;
+        data.Registered = true;
         SaveData(data, path);
     }
 }
