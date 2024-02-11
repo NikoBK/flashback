@@ -14,7 +14,7 @@ namespace flashback_emulator
     {
         // TODO: This should be based on some save data that fetches
         // games from some directory of files.
-        public int GamesCount { get; private set; } = 1;
+        public int GamesCount { get; private set; } = 0;
 
         public NewLayoutForm()
         {
