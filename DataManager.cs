@@ -1,4 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿/*
+*  File: DataManager.cs 
+*  Date: 11/02/2024
+*  Author: NikoBK
+*/
+using Newtonsoft.Json;
 
 public class AppData
 {
@@ -86,13 +91,15 @@ public static class DataManager
     /// <param name="username"></param>
     public static void SaveUsername(string username)
     {
-        // Flashback folder, appdata path.
-        string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/Flashback/appdata/{_saveFile}";
-
         // Find the Flashback folder and store the appdata file in there.
-        AppData data = LoadAppData(path);
+        AppData data = LoadAppData(GetAppDataPath());
         data.Username = username;
         data.Registered = true;
-        SaveData(data, path);
+        SaveData(data, GetAppDataPath());
+    }
+
+    public static string GetAppDataPath()
+    {
+        return $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/Flashback/appdata/{_saveFile}";
     }
 }
