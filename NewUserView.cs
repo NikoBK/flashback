@@ -38,6 +38,9 @@ namespace flashback_emulator
                 introConfirmButton.Enabled = true;
                 return;
             }
+
+            // Save the username through the DataManager.
+            DataManager.SaveUsername(introUsernameTextBox.Text);
         }
     }
 }
