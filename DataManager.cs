@@ -28,7 +28,7 @@ public static class DataManager
     public static AppData LoadAppData(string path)
     {
         // Ensure there is always a savefile.
-        var file = $"{path}/{_saveFile}";
+        var file = $"{path}";
         if (!File.Exists(path)) {
             return CreateAppData(path);
         }
