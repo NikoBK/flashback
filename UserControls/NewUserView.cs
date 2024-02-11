@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
+﻿/*
+*  File: NewUserView.cs 
+*  Date: 11/02/2024
+*  Author: NikoBK
+*/
 namespace flashback_emulator
 {
     public partial class NewUserView : UserControl
@@ -33,7 +28,8 @@ namespace flashback_emulator
             introConfirmButton.Enabled = false;
 
             // Make sure a username is selected.
-            if (string.IsNullOrEmpty(introUsernameTextBox.Text)) {
+            if (string.IsNullOrEmpty(introUsernameTextBox.Text))
+            {
                 invalidUsernameLabel.Visible = true;
                 introConfirmButton.Enabled = true;
                 return;

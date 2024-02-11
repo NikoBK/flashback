@@ -137,7 +137,7 @@
             Controls.Add(introNameLabel);
             Controls.Add(introTitleLabel);
             Name = "NewUserView";
-            Size = new Size(1440, 810);
+            Size = new Size(1425, 773);
             ResumeLayout(false);
             PerformLayout();
         }

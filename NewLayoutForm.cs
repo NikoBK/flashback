@@ -22,6 +22,9 @@ namespace flashback_emulator
                 // introductory view.
                 screenViewPanel.Controls.Add(new NewUserView());
             }
+            else { 
+                screenViewPanel.Controls
+            }
         }
 
         /// <summary>
