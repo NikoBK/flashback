@@ -7,7 +7,7 @@ using flashback_emulator.UserControls;
 
 namespace flashback_emulator
 {
-    public partial class NewLayoutForm : Form
+    public partial class MainForm : Form
     {
         // TODO: This should be based on some save data that fetches
         // games from some directory of files.
@@ -15,7 +15,7 @@ namespace flashback_emulator
         private AppData AppData { get; set; }
         private UserControl? CurrentScreenView { get; set; }
 
-        public NewLayoutForm()
+        public MainForm()
         {
             InitializeComponent();
             LoadAppData();

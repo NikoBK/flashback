@@ -7,11 +7,11 @@ namespace flashback_emulator.UserControls
 {
     public partial class GameStoreBox : UserControl
     {
-        private NewLayoutForm _mainForm { get; set; }
+        private MainForm _mainForm { get; set; }
 
         public GameData GameData { get; private set; }
 
-        public GameStoreBox(NewLayoutForm mainForm, GameData gameData)
+        public GameStoreBox(MainForm mainForm, GameData gameData)
         {
             InitializeComponent();
             _mainForm = mainForm;

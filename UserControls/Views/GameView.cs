@@ -7,10 +7,10 @@ namespace flashback_emulator.UserControls
 {
     public partial class GameView : UserControl
     {
-        private static NewLayoutForm _mainForm { get; set; }
+        private static MainForm _mainForm { get; set; }
         private static GameData _gameData { get; set; }
 
-        public GameView(NewLayoutForm mainForm, AppData appData, GameData gameData)
+        public GameView(MainForm mainForm, AppData appData, GameData gameData)
         {
             InitializeComponent();
             _mainForm = mainForm;

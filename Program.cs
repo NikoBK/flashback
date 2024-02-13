@@ -26,7 +26,7 @@ namespace flashback_emulator
 
             SetProcessDpiAwareness((int)DpiAwareness.PerMonitorAware);
 
-            Application.Run(new NewLayoutForm());
+            Application.Run(new MainForm());
         }
     }
 }

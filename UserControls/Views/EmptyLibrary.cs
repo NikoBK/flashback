@@ -7,9 +7,9 @@ namespace flashback_emulator.UserControls
 {
     public partial class EmptyLibrary : UserControl
     {
-        private static NewLayoutForm _mainForm { get; set; }
+        private static MainForm _mainForm { get; set; }
 
-        public EmptyLibrary(NewLayoutForm mainForm, AppData appData)
+        public EmptyLibrary(MainForm mainForm, AppData appData)
         {
             InitializeComponent();
             _mainForm = mainForm;

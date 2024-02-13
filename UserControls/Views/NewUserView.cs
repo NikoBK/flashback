@@ -7,9 +7,9 @@ namespace flashback_emulator
 {
     public partial class NewUserView : UserControl
     {
-        private NewLayoutForm _mainForm { get; set; }
+        private MainForm _mainForm { get; set; }
 
-        public NewUserView(NewLayoutForm mainform)
+        public NewUserView(MainForm mainform)
         {
             InitializeComponent();
             _mainForm = mainform;

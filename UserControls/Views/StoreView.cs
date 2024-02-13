@@ -11,12 +11,12 @@ namespace flashback_emulator.UserControls
     {
         // Singleton pattern for the main form to do callbacks on button clicks so
         // that the screenview panel can be updated per button click.
-        private static NewLayoutForm _mainForm { get; set; }
+        private static MainForm _mainForm { get; set; }
         private static AppData _appData { get; set; }
 
         public static Dictionary<GameData, GameStoreBox> Games { get; private set; }
 
-        public storeLabel(NewLayoutForm mainForm, AppData appData)
+        public storeLabel(MainForm mainForm, AppData appData)
         {
             InitializeComponent();
             _mainForm = mainForm;

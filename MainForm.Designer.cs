@@ -1,6 +1,6 @@
 ﻿namespace flashback_emulator
 {
-    partial class NewLayoutForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
