@@ -16,6 +16,8 @@ namespace flashback_emulator.UserControls
             InitializeComponent();
             _mainForm = mainForm;
             GameData = gameData;
+
+            gameBoxNameLabel.Text = gameData.Name;
         }
 
         private void gameBoxArtButton_Click(object sender, EventArgs e)

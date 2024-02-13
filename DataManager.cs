@@ -24,9 +24,11 @@ public class AppData
 /// </summary>
 public class GameData
 {
+    public string Id { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public bool SupportsMultiplayer { get; set; }
+    public string SWFPath { get; set; }
 }
 
 public static class DataManager
