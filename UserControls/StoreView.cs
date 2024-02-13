@@ -24,16 +24,9 @@ namespace flashback_emulator.UserControls
             int centerX = (storePanel.Width - storeSortPanel.Width) / 2;
             storeSortPanel.Location = new Point(centerX, storeSortPanel.Location.Y);
 
+            // Start parsing all games in the installed
+            // flashback directory.
             ParseGames();
-            // Use this for later.
-            //for (int i = 0; i < 25; i++)
-            //{
-            //    // Instantiate a gamebox for each game.
-            //    GameStoreBox gameBox = new GameStoreBox();
-
-            //    // Add the game to the store.
-            //    gameBoxFlowLayoutPanel.Controls.Add(gameBox);
-            //}
         }
 
         private void libraryButton_Click(object sender, EventArgs e)
