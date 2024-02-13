@@ -5,12 +5,28 @@
 */
 using Newtonsoft.Json;
 
+/// <summary>
+/// Application data for Flashback.
+/// Needed for statstics and user identification.
+/// </summary>
 public class AppData
 {
     public string Username { get; set; }
     public bool Registered { get; set; }
     public DateTime UserCreationDate { get; set; }
     public int GameCount { get; set; }
+}
+
+/// <summary>
+/// GameData for games displayed across Flashback.
+/// Is used in the store as well as the library and 
+/// each view for each game respectively.
+/// </summary>
+public class GameData
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public bool SupportsMultiplayer { get; set; }
 }
 
 public static class DataManager

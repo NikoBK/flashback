@@ -25,5 +25,10 @@ namespace flashback_emulator.UserControls
         {
             _mainForm.OpenStore();
         }
+
+        private void LibraryView_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

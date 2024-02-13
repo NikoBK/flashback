@@ -35,6 +35,7 @@
             libUsernameButton = new Button();
             libAddGameButton = new Button();
             libLibraryLabel = new Label();
+            panel5 = new Panel();
             gamesArtPanel.SuspendLayout();
             gamesListPanel.SuspendLayout();
             SuspendLayout();
@@ -117,11 +118,20 @@
             libLibraryLabel.TabIndex = 15;
             libLibraryLabel.Text = "LIBRARY";
             // 
+            // panel5
+            // 
+            panel5.BackColor = Color.FromArgb(13, 19, 27);
+            panel5.Location = new Point(0, 0);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1425, 32);
+            panel5.TabIndex = 23;
+            // 
             // LibraryView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(23, 29, 37);
+            Controls.Add(panel5);
             Controls.Add(libLibraryLabel);
             Controls.Add(gamesArtPanel);
             Controls.Add(gamesListPanel);
@@ -129,6 +139,7 @@
             Controls.Add(libAddGameButton);
             Name = "LibraryView";
             Size = new Size(1425, 773);
+            Load += LibraryView_Load;
             gamesArtPanel.ResumeLayout(false);
             gamesArtPanel.PerformLayout();
             gamesListPanel.ResumeLayout(false);
@@ -146,5 +157,6 @@
         private Button libUsernameButton;
         private Button libAddGameButton;
         private Label libLibraryLabel;
+        private Panel panel5;
     }
 }
