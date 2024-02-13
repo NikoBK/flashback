@@ -23,7 +23,7 @@ namespace flashback_emulator.UserControls
 
         private void libAddGameButton_Click(object sender, EventArgs e)
         {
-
+            _mainForm.OpenStore();
         }
     }
 }
