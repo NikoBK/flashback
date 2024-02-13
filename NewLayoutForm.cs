@@ -27,7 +27,7 @@ namespace flashback_emulator
                 UpdateScreenView(new NewUserView(this));
             }
             else {
-                UpdateScreenView(new LibraryView(AppData));
+                UpdateScreenView(new LibraryView(this, AppData));
             }
         }
 
@@ -58,13 +58,23 @@ namespace flashback_emulator
         }
 
         /// <summary>
-        /// Function call for the <see cref="NewUserView"/> when the confirm button is called.
-        /// Loads Flashback's appdata and feed it to the libraryview.
+        /// Function call for the <see cref="NewUserView"/> when the confirm button is clicked.
+        /// Loads Flashback's appdata and feeds it to the <see cref="LibraryView"/>.
         /// </summary>
         public void OpenLibrary()
         {
             LoadAppData();
-            UpdateScreenView(new LibraryView(AppData));
+            UpdateScreenView(new LibraryView(this, AppData));
+        }
+
+        /// <summary>
+        /// Function call for the <see cref="LibraryView"/> wehn the 'ADD GAME' button is clicked.
+        /// Loads Flashback's appdata and feeds it to the <see cref="StoreView"/>.
+        /// </summary>
+        public void OpenStore()
+        {
+            LoadAppData();
+            UpdateScreenView(new StoreView(this, AppData));
         }
     }
 }

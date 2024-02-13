@@ -104,6 +104,7 @@
             libAddGameButton.TabIndex = 12;
             libAddGameButton.Text = "ADD GAME";
             libAddGameButton.UseVisualStyleBackColor = true;
+            libAddGameButton.Click += libAddGameButton_Click;
             // 
             // libLibraryLabel
             // 
