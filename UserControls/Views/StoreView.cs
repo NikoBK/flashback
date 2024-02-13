@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace flashback_emulator.UserControls
 {
-    public partial class storeLabel : UserControl
+    public partial class StoreView : UserControl
     {
         // Singleton pattern for the main form to do callbacks on button clicks so
         // that the screenview panel can be updated per button click.
@@ -16,7 +16,7 @@ namespace flashback_emulator.UserControls
 
         public static Dictionary<GameData, GameStoreBox> Games { get; private set; }
 
-        public storeLabel(MainForm mainForm, AppData appData)
+        public StoreView(MainForm mainForm, AppData appData)
         {
             InitializeComponent();
             _mainForm = mainForm;

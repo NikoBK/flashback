@@ -69,12 +69,12 @@ namespace flashback_emulator
 
         /// <summary>
         /// Function call for the <see cref="LibraryView"/> wehn the 'ADD GAME' button is clicked.
-        /// Loads Flashback's appdata and feeds it to the <see cref="storeLabel"/>.
+        /// Loads Flashback's appdata and feeds it to the <see cref="StoreView"/>.
         /// </summary>
         public void OpenStore()
         {
             LoadAppData();
-            UpdateScreenView(new storeLabel(this, AppData));
+            UpdateScreenView(new StoreView(this, AppData));
         }
 
         public void ShowGameView(GameData data)

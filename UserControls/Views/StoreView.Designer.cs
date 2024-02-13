@@ -1,6 +1,6 @@
 ﻿namespace flashback_emulator.UserControls
 {
-    partial class storeLabel
+    partial class StoreView
     {
         /// <summary> 
         /// Required designer variable.
