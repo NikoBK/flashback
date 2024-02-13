@@ -14,7 +14,7 @@ public class AppData
     public string Username { get; set; }
     public bool Registered { get; set; }
     public DateTime UserCreationDate { get; set; }
-    public int GameCount { get; set; }
+    public List<GameData> Games { get; set; }
 }
 
 /// <summary>
@@ -29,6 +29,7 @@ public class GameData
     public string Description { get; set; }
     public bool SupportsMultiplayer { get; set; }
     public string SWFPath { get; set; }
+    public bool InLibrary { get; set; }
 }
 
 public static class DataManager
@@ -76,7 +77,7 @@ public static class DataManager
             Username = "None",
             Registered = false,
             UserCreationDate = DateTime.Now,
-            GameCount = 0
+            Games = new List<GameData>()
         };
         SaveData(data, path);
         return data;
@@ -89,8 +90,12 @@ public static class DataManager
     /// </summary>
     /// <param name="data"></param>
     /// <param name="path"></param>
-    public static void SaveData(AppData data, string path)
+    public static void SaveData(AppData data, string path = "")
     {
+        // Default to the appdata path in documents if no path is specified.
+        if (string.IsNullOrEmpty(path)) {
+            path = GetAppDataPath();
+        }
         var filePath = $"{path}";
 
         // If either the file or the directory does not exist, create it.

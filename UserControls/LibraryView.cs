@@ -17,8 +17,15 @@ namespace flashback_emulator.UserControls
             _mainForm = mainForm;
             libUsernameButton.Text = appData.Username.ToUpper();
 
-            libLabelNoGames.Visible = appData.GameCount < 1;
-            libLabelNoGamesList.Visible = appData.GameCount < 1;
+            // TODO: Parse through all added games.
+            if (appData.Games.Count > 0)
+            {
+                foreach (var game in appData.Games)
+                {
+                    SimpleGameLibraryButton simpleBtn = new SimpleGameLibraryButton(game);
+                    simpleLibListFlowLayoutPanel.Controls.Add(simpleBtn);
+                }
+            }
         }
 
         private void libAddGameButton_Click(object sender, EventArgs e)

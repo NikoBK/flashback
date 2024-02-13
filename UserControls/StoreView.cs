@@ -12,6 +12,7 @@ namespace flashback_emulator.UserControls
         // Singleton pattern for the main form to do callbacks on button clicks so
         // that the screenview panel can be updated per button click.
         private static NewLayoutForm _mainForm { get; set; }
+        private static AppData _appData { get; set; }
 
         public static Dictionary<GameData, GameStoreBox> Games { get; private set; }
 
@@ -19,8 +20,11 @@ namespace flashback_emulator.UserControls
         {
             InitializeComponent();
             _mainForm = mainForm;
+            _appData = appData;
+
             usernameButton.Text = appData.Username.ToUpper();
 
+            // Center the search bar/panel.
             int centerX = (storePanel.Width - storeSortPanel.Width) / 2;
             storeSortPanel.Location = new Point(centerX, storeSortPanel.Location.Y);
 
@@ -51,12 +55,18 @@ namespace flashback_emulator.UserControls
                     Id = elem.Attribute("id").Value, // Every game xml must have an id!
                     Name = elem.Element("Name") != null ? elem.Element("Name").Value : "No Name",
                     Description = elem.Element("Description") != null ? elem.Element("Description").Value : "No Description",
-                    SupportsMultiplayer = false,
+                    SupportsMultiplayer = false
                 };
 
                 // Save the swf path for later, might be useful for
                 // doing a save-data backup for any game.
                 data.SWFPath = $"{path}{data.Id}.swf";
+
+                foreach (var game in _appData.Games) { 
+                    if (game.Id == data.Id) {
+                        data.InLibrary = true;
+                    }
+                }
 
                 // Instantiate the game as a gamebox on the store view.
                 GameStoreBox box = new GameStoreBox(_mainForm, data);

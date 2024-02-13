@@ -28,57 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            gamesArtPanel = new Panel();
-            libLabelNoGames = new Label();
-            gamesListPanel = new Panel();
-            libLabelNoGamesList = new Label();
             libUsernameButton = new Button();
             libAddGameButton = new Button();
             libLibraryLabel = new Label();
             panel5 = new Panel();
-            gamesArtPanel.SuspendLayout();
-            gamesListPanel.SuspendLayout();
+            gamesFlowLayoutPanel = new FlowLayoutPanel();
+            simpleLibListFlowLayoutPanel = new FlowLayoutPanel();
             SuspendLayout();
-            // 
-            // gamesArtPanel
-            // 
-            gamesArtPanel.BackColor = Color.FromArgb(39, 35, 43);
-            gamesArtPanel.Controls.Add(libLabelNoGames);
-            gamesArtPanel.Location = new Point(212, 119);
-            gamesArtPanel.Name = "gamesArtPanel";
-            gamesArtPanel.Size = new Size(1206, 615);
-            gamesArtPanel.TabIndex = 11;
-            // 
-            // libLabelNoGames
-            // 
-            libLabelNoGames.AutoSize = true;
-            libLabelNoGames.Font = new Font("Segoe UI Semibold", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
-            libLabelNoGames.ForeColor = Color.White;
-            libLabelNoGames.Location = new Point(372, 284);
-            libLabelNoGames.Name = "libLabelNoGames";
-            libLabelNoGames.Size = new Size(561, 47);
-            libLabelNoGames.TabIndex = 0;
-            libLabelNoGames.Text = "You have no games in your library";
-            // 
-            // gamesListPanel
-            // 
-            gamesListPanel.BackColor = Color.FromArgb(36, 40, 47);
-            gamesListPanel.Controls.Add(libLabelNoGamesList);
-            gamesListPanel.Location = new Point(6, 119);
-            gamesListPanel.Name = "gamesListPanel";
-            gamesListPanel.Size = new Size(200, 615);
-            gamesListPanel.TabIndex = 10;
-            // 
-            // libLabelNoGamesList
-            // 
-            libLabelNoGamesList.AutoSize = true;
-            libLabelNoGamesList.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            libLabelNoGamesList.ForeColor = Color.White;
-            libLabelNoGamesList.Location = new Point(49, 15);
-            libLabelNoGamesList.Name = "libLabelNoGamesList";
-            libLabelNoGamesList.Size = new Size(106, 15);
-            libLabelNoGamesList.TabIndex = 0;
-            libLabelNoGamesList.Text = "No games to show";
             // 
             // libUsernameButton
             // 
@@ -126,37 +82,48 @@
             panel5.Size = new Size(1425, 32);
             panel5.TabIndex = 23;
             // 
+            // gamesFlowLayoutPanel
+            // 
+            gamesFlowLayoutPanel.BackColor = Color.FromArgb(39, 35, 43);
+            gamesFlowLayoutPanel.Location = new Point(212, 104);
+            gamesFlowLayoutPanel.Name = "gamesFlowLayoutPanel";
+            gamesFlowLayoutPanel.Size = new Size(1206, 630);
+            gamesFlowLayoutPanel.TabIndex = 1;
+            // 
+            // simpleLibListFlowLayoutPanel
+            // 
+            simpleLibListFlowLayoutPanel.BackColor = Color.FromArgb(36, 40, 47);
+            simpleLibListFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
+            simpleLibListFlowLayoutPanel.Location = new Point(6, 104);
+            simpleLibListFlowLayoutPanel.Name = "simpleLibListFlowLayoutPanel";
+            simpleLibListFlowLayoutPanel.Size = new Size(200, 630);
+            simpleLibListFlowLayoutPanel.TabIndex = 2;
+            simpleLibListFlowLayoutPanel.WrapContents = false;
+            // 
             // LibraryView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(23, 29, 37);
+            Controls.Add(simpleLibListFlowLayoutPanel);
+            Controls.Add(gamesFlowLayoutPanel);
             Controls.Add(panel5);
             Controls.Add(libLibraryLabel);
-            Controls.Add(gamesArtPanel);
-            Controls.Add(gamesListPanel);
             Controls.Add(libUsernameButton);
             Controls.Add(libAddGameButton);
             Name = "LibraryView";
             Size = new Size(1425, 773);
             Load += LibraryView_Load;
-            gamesArtPanel.ResumeLayout(false);
-            gamesArtPanel.PerformLayout();
-            gamesListPanel.ResumeLayout(false);
-            gamesListPanel.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Panel gamesArtPanel;
-        private Label libLabelNoGames;
-        private Panel gamesListPanel;
-        private Label libLabelNoGamesList;
         private Button libUsernameButton;
         private Button libAddGameButton;
         private Label libLibraryLabel;
         private Panel panel5;
+        private FlowLayoutPanel gamesFlowLayoutPanel;
+        private FlowLayoutPanel simpleLibListFlowLayoutPanel;
     }
 }

@@ -255,6 +255,7 @@
             playButton.TabIndex = 1;
             playButton.Text = "ADD TO LIBRARY";
             playButton.UseVisualStyleBackColor = false;
+            playButton.Click += playButton_Click;
             // 
             // gameCoverPictureBox
             // 

@@ -82,5 +82,21 @@ namespace flashback_emulator
             LoadAppData();
             UpdateScreenView(new GameView(this, AppData, data));
         }
+
+        public void AddGameToLibrary(GameData game)
+        {
+            // Get the latest application data.
+            LoadAppData();
+
+            // Add the game.
+            AppData.Games.Add(game);
+
+            // Save the addition of the game.
+            game.InLibrary = true;
+            DataManager.SaveData(AppData);
+
+            // Refresh the library.
+            OpenLibrary();
+        }
     }
 }
