@@ -22,7 +22,7 @@ namespace flashback_emulator.UserControls
 
         private void gameBoxArtButton_Click(object sender, EventArgs e)
         {
-            // TODO: Dispatch the gameview from the main form.
+            _mainForm.ShowGameView(GameData);
         }
     }
 }

@@ -76,5 +76,11 @@ namespace flashback_emulator
             LoadAppData();
             UpdateScreenView(new storeLabel(this, AppData));
         }
+
+        public void ShowGameView(GameData data)
+        {
+            LoadAppData();
+            UpdateScreenView(new GameView(this, AppData, data));
+        }
     }
 }
