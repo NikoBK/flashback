@@ -72,7 +72,12 @@ namespace flashback_emulator
         public void OpenLibrary()
         {
             LoadAppData();
-            UpdateScreenView(new LibraryView(this, AppData));
+            if (AppData.Games.Count > 0) {
+                UpdateScreenView(new LibraryView(this, AppData));
+            }
+            else {
+                UpdateScreenView(new EmptyLibrary(this, AppData));
+            }
         }
 
         /// <summary>
