@@ -25,11 +25,23 @@ namespace flashback_emulator.UserControls
                 foreach (var game in appData.Games)
                 {
                     // Add the simple buttons in the left-most panel.
-                    SimpleGameLibraryButton simpleBtn = new SimpleGameLibraryButton(_mainForm, game);
+                    SimpleGameLibraryButton simpleBtn;
+                    if (DataManager.Icons.ContainsKey(game.Id)) { 
+                        simpleBtn = new SimpleGameLibraryButton(_mainForm, game, DataManager.Icons[game.Id]);
+                    }
+                    else {
+                        simpleBtn = new SimpleGameLibraryButton(_mainForm, game);
+                    }
                     simpleLibListFlowLayoutPanel.Controls.Add(simpleBtn);
 
                     // Add the artwork buttons.
-                    LibraryGameArtBox artBtn = new LibraryGameArtBox(_mainForm, game);
+                    LibraryGameArtBox artBtn;
+                    if (DataManager.LibraryGrids.ContainsKey(game.Id)) { 
+                        artBtn = new LibraryGameArtBox(_mainForm, game, DataManager.LibraryGrids[game.Id]);
+                    }
+                    else { 
+                        artBtn = new LibraryGameArtBox(_mainForm, game);
+                    }
                     gamesFlowLayoutPanel.Controls.Add(artBtn);
                 }
             }

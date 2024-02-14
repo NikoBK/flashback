@@ -33,9 +33,9 @@
             // 
             // artworkButton
             // 
+            artworkButton.BackgroundImage = Properties.Resources.default_game_artwork;
             artworkButton.FlatAppearance.BorderColor = Color.FromArgb(16, 18, 23);
             artworkButton.FlatStyle = FlatStyle.Flat;
-            artworkButton.Image = Properties.Resources.default_game_artwork;
             artworkButton.Location = new Point(0, 0);
             artworkButton.Name = "artworkButton";
             artworkButton.Size = new Size(160, 235);

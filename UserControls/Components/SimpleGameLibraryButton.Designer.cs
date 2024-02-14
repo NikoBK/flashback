@@ -36,8 +36,8 @@
             // logoPicturebox
             // 
             logoPicturebox.BackColor = Color.White;
-            logoPicturebox.BackgroundImageLayout = ImageLayout.Zoom;
-            logoPicturebox.Image = Properties.Resources.default_simple_game_logo;
+            logoPicturebox.BackgroundImage = Properties.Resources.default_simple_game_logo;
+            logoPicturebox.BackgroundImageLayout = ImageLayout.Stretch;
             logoPicturebox.Location = new Point(0, 0);
             logoPicturebox.Name = "logoPicturebox";
             logoPicturebox.Size = new Size(23, 23);
