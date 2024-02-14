@@ -20,6 +20,9 @@ namespace flashback_emulator
             InitializeComponent();
             LoadAppData();
             CurrentScreenView = null;
+
+            // Start parsing games for caching.
+            DataManager.Init();
             
             if (!AppData.Registered) {
                 // If the user for the existing appdata is not registered display the

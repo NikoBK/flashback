@@ -14,8 +14,6 @@ namespace flashback_emulator.UserControls
         private static MainForm _mainForm { get; set; }
         private static AppData _appData { get; set; }
 
-        public static Dictionary<GameData, GameStoreBox> Games { get; private set; }
-
         public StoreView(MainForm mainForm, AppData appData)
         {
             InitializeComponent();
@@ -40,38 +38,20 @@ namespace flashback_emulator.UserControls
 
         private void ParseGames()
         {
-            Games = new Dictionary<GameData, GameStoreBox>();
-            string path = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/Flashback/games/";
-
-            // Enumerate all files in the games folder. Using enumeratefiles because
-            // it is more memory effecient.
-            string[] gamesXML = Directory.EnumerateFiles(path, "games.xml", SearchOption.AllDirectories).ToArray();
-            XElement xml = XElement.Load(gamesXML[0]); // There should always only be one file in this.
-
-            // Parse every game xml.
-            foreach (XElement elem in xml.Elements("Game")) 
+            foreach (var game in DataManager.Games) 
             {
-                GameData data = new GameData {
-                    Id = elem.Attribute("id").Value, // Every game xml must have an id!
-                    Name = elem.Element("Name") != null ? elem.Element("Name").Value : "No Name",
-                    Description = elem.Element("Description") != null ? elem.Element("Description").Value : "No Description",
-                    SupportsMultiplayer = false
-                };
-
-                // Save the swf path for later, might be useful for
-                // doing a save-data backup for any game.
-                data.SWFPath = $"{path}{data.Id}.swf";
-
-                foreach (var game in _appData.Games) { 
-                    if (game.Id == data.Id) {
-                        data.InLibrary = true;
-                    }
-                }
-
                 // Instantiate the game as a gamebox on the store view.
-                GameStoreBox box = new GameStoreBox(_mainForm, data);
+                GameStoreBox box;
+
+                // If there is a storegrid cached for the game in the datamanger
+                // use it.
+                if (DataManager.StoreGrids.ContainsKey(game.Key)) { 
+                    box = new GameStoreBox(_mainForm, game.Value, DataManager.StoreGrids[game.Key]);
+                }
+                else {
+                    box = new GameStoreBox(_mainForm, game.Value);
+                }
                 gameBoxFlowLayoutPanel.Controls.Add(box);
-                Games.Add(data, box);
             }
         }
     }

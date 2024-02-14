@@ -59,8 +59,9 @@
             // 
             // gameBoxArtButton
             // 
+            gameBoxArtButton.BackgroundImage = Properties.Resources.default_store_artwork;
+            gameBoxArtButton.BackgroundImageLayout = ImageLayout.Stretch;
             gameBoxArtButton.FlatStyle = FlatStyle.Popup;
-            gameBoxArtButton.Image = Properties.Resources.default_store_artwork;
             gameBoxArtButton.Location = new Point(0, 0);
             gameBoxArtButton.Name = "gameBoxArtButton";
             gameBoxArtButton.Size = new Size(285, 140);
