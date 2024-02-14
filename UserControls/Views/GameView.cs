@@ -3,6 +3,8 @@
 *  Date: 13/02/2024
 *  Author: NikoBK
 */
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+
 namespace flashback_emulator.UserControls
 {
     public partial class GameView : UserControl
@@ -23,6 +25,12 @@ namespace flashback_emulator.UserControls
                 playButton.Text = "PLAY";
                 playButton.Font = new Font(playButton.Font.Name, 14.25f);
                 playButton.BackColor = Color.FromArgb(71, 197, 52);
+            }
+            else if (!gameData.Playable) {
+                playButton.Text = "NO GAME FILE";
+                playButton.Font = new Font(playButton.Font.Name, 10.25f);
+                playButton.BackColor = Color.FromArgb(39, 79, 135);
+                playButton.Enabled = false;
             }
             else {
                 playButton.Text = "ADD TO LIBRARY";
