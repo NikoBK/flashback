@@ -260,7 +260,8 @@
             // gameCoverPictureBox
             // 
             gameCoverPictureBox.BackColor = Color.White;
-            gameCoverPictureBox.Image = Properties.Resources.default_game_coverart;
+            gameCoverPictureBox.BackgroundImage = Properties.Resources.default_game_coverart;
+            gameCoverPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
             gameCoverPictureBox.Location = new Point(0, 0);
             gameCoverPictureBox.Name = "gameCoverPictureBox";
             gameCoverPictureBox.Size = new Size(1425, 248);

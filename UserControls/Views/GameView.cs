@@ -21,18 +21,26 @@ namespace flashback_emulator.UserControls
             userButton.Text = appData.Username.ToUpper();
             gameNameLabel.Text = gameData.Name;
 
-            if (gameData.InLibrary) {
+            if (DataManager.Heros.ContainsKey(gameData.Id)) {
+                gameCoverPictureBox.BackgroundImage = DataManager.Heros[gameData.Id];
+                gameCoverPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+
+            if (gameData.InLibrary)
+            {
                 playButton.Text = "PLAY";
                 playButton.Font = new Font(playButton.Font.Name, 14.25f);
                 playButton.BackColor = Color.FromArgb(71, 197, 52);
             }
-            else if (!gameData.Playable) {
+            else if (!gameData.Playable)
+            {
                 playButton.Text = "NO GAME FILE";
                 playButton.Font = new Font(playButton.Font.Name, 10.25f);
                 playButton.BackColor = Color.FromArgb(39, 79, 135);
                 playButton.Enabled = false;
             }
-            else {
+            else
+            {
                 playButton.Text = "ADD TO LIBRARY";
                 playButton.Font = new Font(playButton.Font.Name, 10.25f);
                 playButton.BackColor = Color.FromArgb(39, 79, 135);
