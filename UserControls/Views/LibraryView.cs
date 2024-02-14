@@ -3,6 +3,8 @@
 *  Date: 12/02/2024
 *  Author: NikoBK
 */
+using flashback_emulator.UserControls.Components;
+
 namespace flashback_emulator.UserControls
 {
     public partial class LibraryView : UserControl
@@ -22,8 +24,13 @@ namespace flashback_emulator.UserControls
             {
                 foreach (var game in appData.Games)
                 {
-                    SimpleGameLibraryButton simpleBtn = new SimpleGameLibraryButton(game);
+                    // Add the simple buttons in the left-most panel.
+                    SimpleGameLibraryButton simpleBtn = new SimpleGameLibraryButton(_mainForm, game);
                     simpleLibListFlowLayoutPanel.Controls.Add(simpleBtn);
+
+                    // Add the artwork buttons.
+                    LibraryGameArtBox artBtn = new LibraryGameArtBox(_mainForm, game);
+                    gamesFlowLayoutPanel.Controls.Add(artBtn);
                 }
             }
         }

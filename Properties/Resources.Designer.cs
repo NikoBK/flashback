@@ -73,6 +73,16 @@ namespace flashback_emulator.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap default_game_artwork {
+            get {
+                object obj = ResourceManager.GetObject("default_game_artwork", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap default_game_coverart {
             get {
                 object obj = ResourceManager.GetObject("default_game_coverart", resourceCulture);

@@ -57,6 +57,7 @@
             displayNameButton.Text = "Some Game's Display Name";
             displayNameButton.TextAlign = ContentAlignment.MiddleLeft;
             displayNameButton.UseVisualStyleBackColor = true;
+            displayNameButton.Click += displayNameButton_Click;
             // 
             // SimpleGameLibraryButton
             // 
