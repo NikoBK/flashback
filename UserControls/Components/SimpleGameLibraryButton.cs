@@ -16,8 +16,9 @@ namespace flashback_emulator.UserControls
             displayNameButton.Text = game.Name;
             _mainForm = mainform;
             _gameData = game;
-            
-            if (icon != null) { 
+
+            if (icon != null)
+            {
                 logoPicturebox.BackgroundImage = icon;
                 logoPicturebox.BackgroundImageLayout = ImageLayout.Stretch;
             }
