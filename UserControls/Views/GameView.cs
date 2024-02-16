@@ -22,30 +22,26 @@ namespace flashback_emulator.UserControls
             userButton.Text = appData.Username.ToUpper();
             gameNameLabel.Text = gameData.Name;
 
-            if (DataManager.Heros.ContainsKey(gameData.Id))
-            {
+            if (DataManager.Heros.ContainsKey(gameData.Id)) {
                 gameCoverPictureBox.BackgroundImage = DataManager.Heros[gameData.Id];
                 gameCoverPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
             }
 
-            if (gameData.InLibrary)
-            {
+            if (gameData.InLibrary) {
                 playButton.Text = "PLAY";
                 playButton.Font = new Font(playButton.Font.Name, 14.25f);
-                playButton.BackColor = Color.FromArgb(71, 197, 52);
+                playButton.BackColor = Constants.GreenButton;
             }
-            else if (!gameData.Playable)
-            {
+            else if (!gameData.Playable) {
                 playButton.Text = "NO GAME FILE";
                 playButton.Font = new Font(playButton.Font.Name, 10.25f);
-                playButton.BackColor = Color.FromArgb(39, 79, 135);
+                playButton.BackColor = Constants.BlueButton;
                 playButton.Enabled = false;
             }
-            else
-            {
+            else {
                 playButton.Text = "ADD TO LIBRARY";
                 playButton.Font = new Font(playButton.Font.Name, 10.25f);
-                playButton.BackColor = Color.FromArgb(39, 79, 135);
+                playButton.BackColor = Constants.BlueButton;
             }
         }
 
@@ -66,22 +62,19 @@ namespace flashback_emulator.UserControls
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            if (_gamePlaying)
-            {
+            if (_gamePlaying) {
                 _mainForm.StopGame();
                 _gamePlaying = false;
                 playButton.Text = "PLAY";
-                playButton.BackColor = Color.FromArgb(39, 79, 135);
+                playButton.BackColor = Constants.GreenButton;
             }
-            else if (_gameData.Playable && _gameData.InLibrary)
-            {
+            else if (_gameData.Playable && _gameData.InLibrary) {
                 _mainForm.PlayGame(_gameData);
                 _gamePlaying = true;
                 playButton.Text = "STOP";
-                playButton.BackColor = Color.FromArgb(71, 197, 52);
+                playButton.BackColor = Constants.BlueButton;
             }
-            else if (!_gameData.InLibrary)
-            {
+            else if (!_gameData.InLibrary) {
                 _mainForm.AddGameToLibrary(_gameData);
             }
         }
