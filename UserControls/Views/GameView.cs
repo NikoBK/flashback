@@ -64,8 +64,8 @@ namespace flashback_emulator.UserControls
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            if (_gameData.Playable && _gameData.InLibrary) { 
-                // TODO: Play the game.
+            if (_gameData.Playable && _gameData.InLibrary) {
+                _mainForm.PlayGame(_gameData);
             }
             else if (!_gameData.InLibrary) {
                 _mainForm.AddGameToLibrary(_gameData);

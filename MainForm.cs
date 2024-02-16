@@ -4,6 +4,7 @@
 *  Author: NikoBK
 */
 using flashback_emulator.UserControls;
+using System.Diagnostics;
 
 namespace flashback_emulator
 {
@@ -110,6 +111,31 @@ namespace flashback_emulator
 
             // Refresh the library.
             OpenLibrary();
+        }
+
+        public void PlayGame(GameData game)
+        {
+            string projPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/Flashback/flashplayer_projector.exe";
+
+            if (File.Exists(game.SWFPath))
+            {
+                // MessageBox.Show(game.SWFPath);
+                var pi = new ProcessStartInfo(game.SWFPath)
+                {              
+                    Arguments = Path.GetFileName(game.SWFPath),
+                    UseShellExecute = true,
+                    WorkingDirectory = Path.GetDirectoryName(game.SWFPath),
+                    FileName = game.SWFPath,
+                    Verb = "OPEN"
+                };
+                Process.Start(pi);
+            }
+            else {
+                // This should not happen as we do a files check in the GameView for the game.
+                // Keeping this here just in case though.
+                // TODO: Check and remove if redundant.
+                MessageBox.Show($"Unable to find the game files for {game.Name}", "Game not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
