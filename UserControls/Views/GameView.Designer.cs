@@ -227,9 +227,9 @@
             lastPlayedCounterLabel.ForeColor = Color.Gray;
             lastPlayedCounterLabel.Location = new Point(170, 281);
             lastPlayedCounterLabel.Name = "lastPlayedCounterLabel";
-            lastPlayedCounterLabel.Size = new Size(44, 15);
+            lastPlayedCounterLabel.Size = new Size(42, 15);
             lastPlayedCounterLabel.TabIndex = 3;
-            lastPlayedCounterLabel.Text = "Feb 10";
+            lastPlayedCounterLabel.Text = "Never";
             // 
             // lastPlayedLabel
             // 

@@ -11,6 +11,7 @@ namespace flashback_emulator.UserControls
     {
         private static MainForm _mainForm { get; set; }
         private static GameData _gameData { get; set; }
+        private bool _gamePlaying = false;
 
         public GameView(MainForm mainForm, AppData appData, GameData gameData)
         {
@@ -21,7 +22,8 @@ namespace flashback_emulator.UserControls
             userButton.Text = appData.Username.ToUpper();
             gameNameLabel.Text = gameData.Name;
 
-            if (DataManager.Heros.ContainsKey(gameData.Id)) {
+            if (DataManager.Heros.ContainsKey(gameData.Id))
+            {
                 gameCoverPictureBox.BackgroundImage = DataManager.Heros[gameData.Id];
                 gameCoverPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
             }
@@ -64,10 +66,22 @@ namespace flashback_emulator.UserControls
 
         private void playButton_Click(object sender, EventArgs e)
         {
-            if (_gameData.Playable && _gameData.InLibrary) {
-                _mainForm.PlayGame(_gameData);
+            if (_gamePlaying)
+            {
+                _mainForm.StopGame();
+                _gamePlaying = false;
+                playButton.Text = "PLAY";
+                playButton.BackColor = Color.FromArgb(39, 79, 135);
             }
-            else if (!_gameData.InLibrary) {
+            else if (_gameData.Playable && _gameData.InLibrary)
+            {
+                _mainForm.PlayGame(_gameData);
+                _gamePlaying = true;
+                playButton.Text = "STOP";
+                playButton.BackColor = Color.FromArgb(71, 197, 52);
+            }
+            else if (!_gameData.InLibrary)
+            {
                 _mainForm.AddGameToLibrary(_gameData);
             }
         }

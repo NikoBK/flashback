@@ -15,12 +15,22 @@ namespace flashback_emulator
         public int GamesCount { get; private set; } = 0;
         private AppData AppData { get; set; }
         private UserControl? CurrentScreenView { get; set; }
+        
+        // Game stats
+        private System.Windows.Forms.Timer _gameProcessTimer;
+        private DateTime _gameStartTime;
+        private string _elapsedGameTime;
+        private Process _gameProcess;
 
         public MainForm()
         {
             InitializeComponent();
             LoadAppData();
             CurrentScreenView = null;
+
+            _gameProcessTimer = new System.Windows.Forms.Timer();
+            _gameProcessTimer.Interval = 1000; // Update every second
+            _gameProcessTimer.Tick += GameTimer_Tick;
 
             // Start parsing games for caching.
             DataManager.Init();
@@ -115,8 +125,6 @@ namespace flashback_emulator
 
         public void PlayGame(GameData game)
         {
-            string projPath = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}/Flashback/flashplayer_projector.exe";
-
             if (File.Exists(game.SWFPath))
             {
                 // MessageBox.Show(game.SWFPath);
@@ -128,13 +136,43 @@ namespace flashback_emulator
                     FileName = game.SWFPath,
                     Verb = "OPEN"
                 };
-                Process.Start(pi);
+                _gameProcess = Process.Start(pi);
+
+                // Record the start time.
+                _gameStartTime = DateTime.Now;
+
+                // Start the time.
+                _gameProcessTimer.Start();
             }
             else {
                 // This should not happen as we do a files check in the GameView for the game.
                 // Keeping this here just in case though.
                 // TODO: Check and remove if redundant.
                 MessageBox.Show($"Unable to find the game files for {game.Name}", "Game not found", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void GameTimer_Tick(object sender, EventArgs e)
+        {
+            // Calculate elapsed time.
+            TimeSpan elapsedTime = DateTime.Now - _gameStartTime;
+
+            // Save time in cache.
+            // TODO: Actually save this in some kind of game data.
+            _elapsedGameTime = elapsedTime.ToString(@"hh\:mm\:ss");
+        }
+
+        /// <summary>
+        /// Kills the process of the current game that is being played.
+        /// </summary>
+        public void StopGame()
+        {
+            _gameProcessTimer.Stop();
+
+            // Stop the flashplayer process.
+            if (_gameProcess != null && !_gameProcess.HasExited) {
+                _gameProcess.Kill(); // Close the process forcefully.
+                _gameProcess.Dispose(); // Release resources.
             }
         }
     }
