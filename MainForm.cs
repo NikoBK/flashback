@@ -19,8 +19,9 @@ namespace flashback_emulator
         // Game stats
         private System.Windows.Forms.Timer _gameProcessTimer;
         private DateTime _gameStartTime;
-        private string _elapsedGameTime;
+        private TimeSpan _elapsedGameTime;
         private Process _gameProcess;
+        private string _currentGameId;
 
         public MainForm()
         {
@@ -125,6 +126,8 @@ namespace flashback_emulator
 
         public void PlayGame(GameData game)
         {
+            LoadAppData();
+
             if (File.Exists(game.SWFPath))
             {
                 // MessageBox.Show(game.SWFPath);
@@ -141,8 +144,27 @@ namespace flashback_emulator
                 // Record the start time.
                 _gameStartTime = DateTime.Now;
 
+                // Update last played.
+                DateTime today = DateTime.Today;
+
                 // Start the time.
                 _gameProcessTimer.Start();
+
+                foreach (var savedGame in AppData.Games) { 
+                    if (savedGame.Id == game.Id) {
+                        savedGame.LastPlayed = today;
+                        _currentGameId = savedGame.Id;
+
+                        if (!savedGame.HasBeenPlayed) {
+                            savedGame.HasBeenPlayed = true;
+                        }
+
+                        var gameview = (CurrentScreenView as GameView);
+                        if (gameview != null) {
+                            gameview.UpdateLastPlayed(savedGame.LastPlayed);
+                        }
+                    }
+                }
             }
             else {
                 // This should not happen as we do a files check in the GameView for the game.
@@ -156,10 +178,7 @@ namespace flashback_emulator
         {
             // Calculate elapsed time.
             TimeSpan elapsedTime = DateTime.Now - _gameStartTime;
-
-            // Save time in cache.
-            // TODO: Actually save this in some kind of game data.
-            _elapsedGameTime = elapsedTime.ToString(@"hh\:mm\:ss");
+            _elapsedGameTime = elapsedTime;
         }
 
         /// <summary>
@@ -173,6 +192,22 @@ namespace flashback_emulator
             if (_gameProcess != null && !_gameProcess.HasExited) {
                 _gameProcess.Kill(); // Close the process forcefully.
                 _gameProcess.Dispose(); // Release resources.
+
+                foreach(var game in AppData.Games) { 
+                    if (game.Id == _currentGameId) {
+                        game.TimePlayedS += _elapsedGameTime;
+
+                        var gameview = (CurrentScreenView as GameView);
+                        if (gameview != null) {
+                            gameview.UpdateTimePlayed(game.TimePlayedS);
+                        }
+                    }
+                }
+
+                _currentGameId = string.Empty;
+
+                // Save game stats such as total time played and last played.
+                DataManager.SaveData(AppData);
             }
         }
     }

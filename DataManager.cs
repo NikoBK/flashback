@@ -33,6 +33,9 @@ public class GameData
     public string SWFPath { get; set; }
     public bool InLibrary { get; set; }
     public bool Playable { get; set; }
+    public bool HasBeenPlayed { get; set; }
+    public DateTime LastPlayed { get; set; }
+    public TimeSpan TimePlayedS { get; set; }
 }
 
 public static class DataManager
@@ -108,7 +111,8 @@ public static class DataManager
                     Description = xml.Element("Description") != null ? xml.Element("Description").Value : "No Description",
                     SWFPath = swfFiles[0],
                     SupportsMultiplayer = false,
-                    Playable = true
+                    Playable = true,
+                    HasBeenPlayed = false
                 };
 
                 foreach (var game in appdata.Games) { 
@@ -153,7 +157,8 @@ public static class DataManager
                     Name = folderName,
                     Description = "No Description",
                     SupportsMultiplayer = false,
-                    Playable = false
+                    Playable = false,
+                    HasBeenPlayed = false
                 };
             }
         }

@@ -22,6 +22,15 @@ namespace flashback_emulator.UserControls
             userButton.Text = appData.Username.ToUpper();
             gameNameLabel.Text = gameData.Name;
 
+            if (_gameData.HasBeenPlayed) {
+                lastPlayedCounterLabel.Text = gameData.LastPlayed.ToString("MMM dd");
+                playTimeCounterLabel.Text = gameData.TimePlayedS.ToString(@"hh\:mm\:ss");
+            }
+            else {
+                lastPlayedCounterLabel.Text = "Never";
+                playTimeCounterLabel.Text = "No Time";
+            }
+
             if (DataManager.Heros.ContainsKey(gameData.Id)) {
                 gameCoverPictureBox.BackgroundImage = DataManager.Heros[gameData.Id];
                 gameCoverPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
@@ -77,6 +86,16 @@ namespace flashback_emulator.UserControls
             else if (!_gameData.InLibrary) {
                 _mainForm.AddGameToLibrary(_gameData);
             }
+        }
+
+        public void UpdateLastPlayed(DateTime timestamp)
+        {
+            lastPlayedCounterLabel.Text = timestamp.ToString("MMM dd");
+        }
+
+        public void UpdateTimePlayed(TimeSpan time)
+        {
+            playTimeCounterLabel.Text = time.ToString(@"hh\:mm\:ss");
         }
     }
 }
