@@ -5,5 +5,8 @@ It aims to organize Flashplayer games run and launched with a Flashplayer Projec
 # Screenshots
 TBA
 
+# How to Install
+TBA
+
 # Credits
 TBA
