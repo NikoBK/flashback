@@ -18,6 +18,12 @@ namespace flashback_emulator.UserControls
             InitializeComponent();
             _mainForm = mainForm;
             libUsernameButton.Text = appData.Username.ToUpper();
+            simpleLibListFlowLayoutPanel.AutoScroll = true;
+            simpleLibListFlowLayoutPanel.HorizontalScroll.Enabled = false;
+            simpleLibListFlowLayoutPanel.HorizontalScroll.Visible = false;
+            simpleLibListFlowLayoutPanel.HorizontalScroll.Maximum = 0;
+            simpleLibListFlowLayoutPanel.AutoScrollMinSize = new Size(0, 630);
+            simpleLibListFlowLayoutPanel.WrapContents = false;
 
             // TODO: Parse through all added games.
             if (appData.Games.Count > 0)
@@ -26,20 +32,24 @@ namespace flashback_emulator.UserControls
                 {
                     // Add the simple buttons in the left-most panel.
                     SimpleGameLibraryButton simpleBtn;
-                    if (DataManager.Icons.ContainsKey(game.Id)) { 
+                    if (DataManager.Icons.ContainsKey(game.Id))
+                    {
                         simpleBtn = new SimpleGameLibraryButton(_mainForm, game, DataManager.Icons[game.Id]);
                     }
-                    else {
+                    else
+                    {
                         simpleBtn = new SimpleGameLibraryButton(_mainForm, game);
                     }
                     simpleLibListFlowLayoutPanel.Controls.Add(simpleBtn);
 
                     // Add the artwork buttons.
                     LibraryGameArtBox artBtn;
-                    if (DataManager.LibraryGrids.ContainsKey(game.Id)) { 
+                    if (DataManager.LibraryGrids.ContainsKey(game.Id))
+                    {
                         artBtn = new LibraryGameArtBox(_mainForm, game, DataManager.LibraryGrids[game.Id]);
                     }
-                    else { 
+                    else
+                    {
                         artBtn = new LibraryGameArtBox(_mainForm, game);
                     }
                     gamesFlowLayoutPanel.Controls.Add(artBtn);

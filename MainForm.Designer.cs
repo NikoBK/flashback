@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             screenViewPanel = new Panel();
             SuspendLayout();
             // 
@@ -39,14 +40,15 @@
             screenViewPanel.Size = new Size(1425, 773);
             screenViewPanel.TabIndex = 0;
             // 
-            // NewLayoutForm
+            // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
             ClientSize = new Size(1424, 771);
             Controls.Add(screenViewPanel);
-            Name = "NewLayoutForm";
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "MainForm";
             Text = "Flashback";
             ResumeLayout(false);
         }

@@ -84,19 +84,21 @@
             // 
             // gamesFlowLayoutPanel
             // 
+            gamesFlowLayoutPanel.AutoScroll = true;
             gamesFlowLayoutPanel.BackColor = Color.FromArgb(39, 35, 43);
-            gamesFlowLayoutPanel.Location = new Point(212, 104);
+            gamesFlowLayoutPanel.Location = new Point(295, 104);
             gamesFlowLayoutPanel.Name = "gamesFlowLayoutPanel";
-            gamesFlowLayoutPanel.Size = new Size(1206, 630);
+            gamesFlowLayoutPanel.Size = new Size(1061, 630);
             gamesFlowLayoutPanel.TabIndex = 1;
             // 
             // simpleLibListFlowLayoutPanel
             // 
+            simpleLibListFlowLayoutPanel.AutoScroll = true;
             simpleLibListFlowLayoutPanel.BackColor = Color.FromArgb(36, 40, 47);
             simpleLibListFlowLayoutPanel.FlowDirection = FlowDirection.TopDown;
             simpleLibListFlowLayoutPanel.Location = new Point(6, 104);
             simpleLibListFlowLayoutPanel.Name = "simpleLibListFlowLayoutPanel";
-            simpleLibListFlowLayoutPanel.Size = new Size(200, 630);
+            simpleLibListFlowLayoutPanel.Size = new Size(223, 630);
             simpleLibListFlowLayoutPanel.TabIndex = 2;
             simpleLibListFlowLayoutPanel.WrapContents = false;
             // 

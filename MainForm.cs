@@ -15,7 +15,7 @@ namespace flashback_emulator
         public int GamesCount { get; private set; } = 0;
         private AppData AppData { get; set; }
         private UserControl? CurrentScreenView { get; set; }
-        
+
         // Game stats
         private System.Windows.Forms.Timer _gameProcessTimer;
         private DateTime _gameStartTime;
@@ -35,17 +35,21 @@ namespace flashback_emulator
 
             // Start parsing games for caching.
             DataManager.Init();
-            
-            if (!AppData.Registered) {
+
+            if (!AppData.Registered)
+            {
                 // If the user for the existing appdata is not registered display the
                 // introductory view.
                 UpdateScreenView(new NewUserView(this));
             }
-            else {
-                if (AppData.Games.Count > 0) {
+            else
+            {
+                if (AppData.Games.Count > 0)
+                {
                     UpdateScreenView(new LibraryView(this, AppData));
                 }
-                else {
+                else
+                {
                     UpdateScreenView(new EmptyLibrary(this, AppData));
                 }
             }
@@ -67,7 +71,8 @@ namespace flashback_emulator
         private void UpdateScreenView(UserControl screenView)
         {
             // Remove and dispose the current screenview before updating.
-            if (CurrentScreenView != null) { 
+            if (CurrentScreenView != null)
+            {
                 screenViewPanel.Controls.Remove(CurrentScreenView);
                 CurrentScreenView.Dispose();
             }
@@ -84,10 +89,12 @@ namespace flashback_emulator
         public void OpenLibrary()
         {
             LoadAppData();
-            if (AppData.Games.Count > 0) {
+            if (AppData.Games.Count > 0)
+            {
                 UpdateScreenView(new LibraryView(this, AppData));
             }
-            else {
+            else
+            {
                 UpdateScreenView(new EmptyLibrary(this, AppData));
             }
         }
@@ -132,7 +139,7 @@ namespace flashback_emulator
             {
                 // MessageBox.Show(game.SWFPath);
                 var pi = new ProcessStartInfo(game.SWFPath)
-                {              
+                {
                     Arguments = Path.GetFileName(game.SWFPath),
                     UseShellExecute = true,
                     WorkingDirectory = Path.GetDirectoryName(game.SWFPath),
@@ -150,23 +157,28 @@ namespace flashback_emulator
                 // Start the time.
                 _gameProcessTimer.Start();
 
-                foreach (var savedGame in AppData.Games) { 
-                    if (savedGame.Id == game.Id) {
+                foreach (var savedGame in AppData.Games)
+                {
+                    if (savedGame.Id == game.Id)
+                    {
                         savedGame.LastPlayed = today;
                         _currentGameId = savedGame.Id;
 
-                        if (!savedGame.HasBeenPlayed) {
+                        if (!savedGame.HasBeenPlayed)
+                        {
                             savedGame.HasBeenPlayed = true;
                         }
 
                         var gameview = (CurrentScreenView as GameView);
-                        if (gameview != null) {
+                        if (gameview != null)
+                        {
                             gameview.UpdateLastPlayed(savedGame.LastPlayed);
                         }
                     }
                 }
             }
-            else {
+            else
+            {
                 // This should not happen as we do a files check in the GameView for the game.
                 // Keeping this here just in case though.
                 // TODO: Check and remove if redundant.
@@ -189,16 +201,20 @@ namespace flashback_emulator
             _gameProcessTimer.Stop();
 
             // Stop the flashplayer process.
-            if (_gameProcess != null && !_gameProcess.HasExited) {
+            if (_gameProcess != null && !_gameProcess.HasExited)
+            {
                 _gameProcess.Kill(); // Close the process forcefully.
                 _gameProcess.Dispose(); // Release resources.
 
-                foreach(var game in AppData.Games) { 
-                    if (game.Id == _currentGameId) {
+                foreach (var game in AppData.Games)
+                {
+                    if (game.Id == _currentGameId)
+                    {
                         game.TimePlayedS += _elapsedGameTime;
 
                         var gameview = (CurrentScreenView as GameView);
-                        if (gameview != null) {
+                        if (gameview != null)
+                        {
                             gameview.UpdateTimePlayed(game.TimePlayedS);
                         }
                     }
